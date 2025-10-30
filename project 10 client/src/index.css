@@ -1,0 +1,94 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+/* Custom GrowTogether Light Theme */
+@plugin "daisyui/theme" {
+  name: "lightTheme"; /* Theme name */
+  default: true; /* Set as default */
+  prefersdark: false; /* Optional: follow system dark mode */
+  color-scheme: light; /* Browser color scheme */
+
+  /* Base colors */
+  --color-base-100: oklch(98% 0.02 120); /* very light greenish background */
+  --color-base-200: oklch(95% 0.03 120);
+  --color-base-300: oklch(92% 0.04 120);
+  --color-base-content: oklch(20% 0.05 120); /* main text color */
+
+  /* Theme colors */
+  --color-primary: #4caf50; /* main green */
+  --color-primary-content: #ffffff; /* text on primary */
+  --color-secondary: #81c784; /* lighter leafy green */
+  --color-secondary-content: #ffffff;
+  --color-accent: #ffd54f; /* sunny yellow */
+  --color-accent-content: #2e3a27;
+  --color-neutral: #2e3a27; /* soil brown / muted */
+  --color-neutral-content: #f9fff6;
+  --color-info: #a5d6a7; /* mint info */
+  --color-info-content: #2e3a27;
+  --color-success: #66bb6a; /* success green */
+  --color-success-content: #ffffff;
+  --color-warning: #fdd835; /* warning yellow */
+  --color-warning-content: #2e3a27;
+  --color-error: #e53935; /* red for errors */
+  --color-error-content: #ffffff;
+
+  /* Border radius */
+  --radius-selector: 1rem;
+  --radius-field: 0.25rem;
+  --radius-box: 0.5rem;
+
+  /* Sizes */
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+
+  /* Border & Effects */
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}
+
+/* Custom GrowTogether Dark Theme */
+@plugin "daisyui/theme" {
+  name: "darkTheme"; /* Dark mode theme */
+  prefersdark: true;
+  color-scheme: dark;
+
+  --color-base-100: #2e2e2e; /* dark card background */
+  --color-base-200: #262626;
+  --color-base-300: #1e1e1e;
+  --color-base-content: #f1f8e9;
+
+  --color-primary: #66bb6a;
+  --color-primary-content: #ffffff;
+  --color-secondary: #a5d6a7;
+  --color-secondary-content: #1e1e1e;
+  --color-accent: #fdd835;
+  --color-accent-content: #1e1e1e;
+  --color-neutral: #1e1e1e;
+  --color-neutral-content: #f1f8e9;
+  --color-info: #b2ff59;
+  --color-info-content: #1e1e1e;
+  --color-success: #81c784;
+  --color-success-content: #ffffff;
+  --color-warning: #fbc02d;
+  --color-warning-content: #1e1e1e;
+  --color-error: #e57373;
+  --color-error-content: #1e1e1e;
+
+  --radius-selector: 1rem;
+  --radius-field: 0.25rem;
+  --radius-box: 0.5rem;
+
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}
+
+/* Optional: global font for your gardening theme */
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: var(--color-base-100);
+}
