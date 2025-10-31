@@ -1,79 +1,95 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router";
 
-const Navbar = ({ user, onLogout }) => {
+const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-
+  const [showLogoutBtn, setShowLogoutBtn] = useState(false);
   const toggleMenu = () => setIsOpen(!isOpen);
+
+  const user = false;
+
+  const onLogout = () => {
+    console.log("Logout");
+  };
 
   const links = [
     { name: "Home", path: "/" },
     { name: "Explore Gardeners", path: "/explore-gardeners" },
     { name: "Browse Tips", path: "/browse-tips" },
-    { name: "Share a Garden Tip", path: "/share-tip", private: true },
-    { name: "My Tips", path: "/my-tips", private: true },
+    { name: "Share a Garden Tip", path: "/share-tip" },
+    { name: "My Tips", path: "/my-tips" },
   ];
 
   return (
-    <nav className="bg-base-100 shadow-md">
-      <div className="max-w-7xl mx-auto px-6 md:px-10 flex items-center justify-between h-16">
+    <nav className="bg-base-100 shadow-md py-2">
+      <div className=" mx-auto w-9/10 flex items-center justify-between h-16">
         {/* Logo */}
         <NavLink to="/" className="flex items-center gap-2">
           <img
-            src="https://cdn-icons-png.flaticon.com/512/616/616408.png"
+            src="https://branition.com/assets/img/users/logos/14133-XtJwRvn.webp"
             alt="logo"
-            className="w-8 h-8"
+            className="w-12 h-12 rounded-full"
           />
           <span className="font-bold text-xl text-primary">GrowTogether</span>
         </NavLink>
 
-        {/* Menu for desktop */}
-        <div className="hidden md:flex space-x-6 items-center">
-          {links.map(
-            (link) =>
-              (!link.private || user) && (
-                <NavLink
-                  key={link.name}
-                  to={link.path}
-                  className={({ isActive }) =>
-                    `hover:text-secondary transition-colors ${
-                      isActive
-                        ? "text-primary font-semibold border-b-2 border-primary"
-                        : "text-base-content"
-                    }`
-                  }
-                >
-                  {link.name}
-                </NavLink>
-              )
-          )}
+        {/* Links */}
+        <div className="hidden lg:flex space-x-6 items-center">
+          {links.map((link) => (
+            <NavLink
+              key={link.name}
+              to={link.path}
+              className={({ isActive }) =>
+                `hover:text-secondary transition-colors ${
+                  isActive
+                    ? "text-primary font-semibold border-b-2 border-primary"
+                    : "text-base-content"
+                }`
+              }
+            >
+              {link.name}
+            </NavLink>
+          ))}
+        </div>
 
+        {/* Menu for desktop */}
+        <div className="hidden lg:flex space-x-6 items-center">
           {/* Login / User */}
           {user ? (
             <div className="relative group">
               <img
-                src={user.photoURL}
-                alt={user.name}
-                className="w-10 h-10 rounded-full cursor-pointer"
+                src="https://t4.ftcdn.net/jpg/04/31/64/75/360_F_431647519_usrbQ8Z983hTYe8zgA7t1XVc5fEtqcpa.jpg"
+                alt="profile image"
+                className="w-12 h-12 rounded-full cursor-pointer"
+                onClick={() => setShowLogoutBtn(!showLogoutBtn)}
               />
-              <div className="absolute right-0 mt-2 w-32 bg-base-200 rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
-                <button
-                  onClick={onLogout}
-                  className="w-full text-left px-4 py-2 hover:bg-primary hover:text-white rounded"
-                >
-                  Logout
-                </button>
+              <div className="absolute right-13 top-1 bg-base-200 rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity z-12">
+                <div className="w-full text-left px-4 py-2  rounded whitespace-nowrap">
+                  Erfan Khan
+                </div>
               </div>
+              {showLogoutBtn ? (
+                <div className="absolute right-0 mt-2 w-32 bg-base-200 rounded shadow-lg z-14">
+                  <button
+                    onClick={onLogout}
+                    className="w-full px-4 py-2 hover:bg-primary hover:text-white rounded text-center"
+                  >
+                    Logout
+                  </button>
+                </div>
+              ) : (
+                ""
+              )}
             </div>
           ) : (
-            <NavLink to="/login" className="btn btn-primary btn-sm">
-              Login / SignUp
+            <NavLink to="/login" className="btn btn-primary">
+              SignUp
             </NavLink>
           )}
         </div>
 
         {/* Mobile menu button */}
-        <div className="md:hidden">
+        <div className="lg:hidden">
           <button onClick={toggleMenu} className="btn btn-ghost btn-square">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -95,7 +111,7 @@ const Navbar = ({ user, onLogout }) => {
 
       {/* Mobile menu */}
       {isOpen && (
-        <div className="md:hidden px-6 pb-4 space-y-2 bg-base-100">
+        <div className="lg:hidden px-6 pb-4 space-y-2 bg-base-100">
           {links.map(
             (link) =>
               (!link.private || user) && (
@@ -118,17 +134,17 @@ const Navbar = ({ user, onLogout }) => {
           {user ? (
             <button
               onClick={onLogout}
-              className="block w-full text-left px-4 py-2 rounded hover:bg-primary/20 transition"
+              className="block px-4 py-2 btn btn-primary w-full text-center"
             >
               Logout
             </button>
           ) : (
             <NavLink
               to="/login"
-              className="block px-4 py-2 btn btn-primary btn-sm w-full text-center"
+              className="block px-4 py-2 btn btn-primary w-full text-center"
               onClick={() => setIsOpen(false)}
             >
-              Login / SignUp
+              SignUp
             </NavLink>
           )}
         </div>
