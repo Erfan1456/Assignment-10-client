@@ -2,6 +2,8 @@ import { createBrowserRouter } from "react-router";
 import HomeRoot from "../Root/HomeRoot";
 import ErrorPage from "../Pages/ErrorPage";
 import Home from "../Pages/Home";
+import Signup from "../Pages/Signup";
+import Register from "../Pages/Register";
 
 export const router = createBrowserRouter([
   {
@@ -14,6 +16,14 @@ export const router = createBrowserRouter([
         element: <Home />,
         // loader: () => fetch("/app-info.json"),
         // hydrateFallbackElement: <Loader />,
+      },
+      {
+        path: "/signup",
+        element: <Signup />,
+      },
+      {
+        path: "/register",
+        element: <Register />,
       },
     ],
   },

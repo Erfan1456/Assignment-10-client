@@ -1,16 +1,28 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { NavLink } from "react-router";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showLogoutBtn, setShowLogoutBtn] = useState(false);
   const toggleMenu = () => setIsOpen(!isOpen);
 
-  const user = false;
+  const { user, loading, logout } = useContext(AuthContext);
 
   const onLogout = () => {
-    console.log("Logout");
+    logout()
+      .then(() => toast.success("Logged out successfully!"))
+      .catch(() => toast.error("Logout failed!"));
   };
+
+  if (loading) {
+    // Loader while Firebase checks auth
+    return (
+      <div className="flex justify-center items-center min-h-16 bg-white shadow-md">
+        <span className="loading loading-spinner loading-md text-pink-500"></span>
+      </div>
+    );
+  }
 
   const links = [
     { name: "Home", path: "/" },
@@ -21,7 +33,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="bg-base-100 shadow-md py-2">
+    <nav className="bg-base-100 shadow-md py-2 border-b border-black">
       <div className=" mx-auto w-9/10 flex items-center justify-between h-16">
         {/* Logo */}
         <NavLink to="/" className="flex items-center gap-2">
@@ -82,7 +94,7 @@ const Navbar = () => {
               )}
             </div>
           ) : (
-            <NavLink to="/login" className="btn btn-primary">
+            <NavLink to="/signup" className="btn btn-primary">
               SignUp
             </NavLink>
           )}
@@ -140,7 +152,7 @@ const Navbar = () => {
             </button>
           ) : (
             <NavLink
-              to="/login"
+              to="/signup"
               className="block px-4 py-2 btn btn-primary w-full text-center"
               onClick={() => setIsOpen(false)}
             >
