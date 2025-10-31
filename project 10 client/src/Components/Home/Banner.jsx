@@ -14,7 +14,7 @@ const slides = [
     description:
       "Connect with fellow gardening enthusiasts, exchange tips, and participate in live demonstrations. All experience levels are welcome!",
     image:
-      "https://images.unsplash.com/photo-1587300003388-59208cc962cb?auto=format&fit=crop&w=1470&q=80",
+      "https://tse1.mm.bing.net/th/id/OIP.9yZ05F3Kaoi_8rw_nw4qOgHaFj?rs=1&pid=ImgDetMain&o=7&rm=3",
     buttonText: "Join Event",
   },
   {
@@ -24,7 +24,7 @@ const slides = [
     description:
       "Learn techniques for growing vegetables and herbs in apartments or balconies. Step-by-step guides and expert tips included.",
     image:
-      "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1470&q=80",
+      "https://tse3.mm.bing.net/th/id/OIP.noAfteKooXnVOc8oViGKdAHaDt?rs=1&pid=ImgDetMain&o=7&rm=3",
     buttonText: "Learn More",
   },
   {
@@ -34,7 +34,7 @@ const slides = [
     description:
       "Discover eco-friendly methods to compost kitchen and garden waste. Reduce your footprint and improve soil health naturally.",
     image:
-      "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1470&q=80",
+      "https://cdn.stayhappening.com/events7/banners/ea532e395116dec4d0d8aeceebc0bbe105c23057080d68405f3244c648aece6e-rimg-w1200-h796-dc322c19-gmir.jpg?v=1761672459",
     buttonText: "Register Now",
   },
   {
@@ -44,7 +44,7 @@ const slides = [
     description:
       "Essential tips on watering, sunlight, soil types, and fertilization. Perfect for anyone starting their gardening journey.",
     image:
-      "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1470&q=80",
+      "https://images.ctfassets.net/i3tkg7dt3kro/kcUqtWUlsa9S7TwV9J9z5/ec199a3e4c3212e4fecd8d839ff48e86/top-plant-care-tips-15-1.jpg",
     buttonText: "Read Tips",
   },
 ];
@@ -63,7 +63,7 @@ const Banner = () => {
         {slides.map((slide) => (
           <SwiperSlide key={slide.id}>
             <div
-              className="w-full h-[600px] md:h-[650px] flex items-center justify-center bg-cover bg-center relative"
+              className="w-full min-h-screen flex items-center justify-center bg-cover bg-center relative"
               style={{ backgroundImage: `url(${slide.image})` }}
             >
               {/* Overlay gradient */}

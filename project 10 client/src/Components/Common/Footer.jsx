@@ -9,9 +9,9 @@ const Footer = () => {
         <div className="md:w-1/3">
           <div className="flex items-center gap-2 mb-3">
             <img
-              src="https://cdn-icons-png.flaticon.com/512/616/616408.png" // leaf icon
+              src="/assets/logo.webp"
               alt="logo"
-              className="w-8 h-8"
+              className="w-10 h-10 rounded-full"
             />
             <h1 className="text-xl font-bold text-primary">GrowTogether</h1>
           </div>
@@ -27,26 +27,17 @@ const Footer = () => {
             <h2 className="font-semibold text-primary mb-2">Links</h2>
             <ul className="space-y-1">
               <li>
-                <a
-                  href="/terms"
-                  className="hover:text-secondary transition-colors"
-                >
+                <a className="hover:text-secondary transition-colors">
                   Terms of Service
                 </a>
               </li>
               <li>
-                <a
-                  href="/privacy"
-                  className="hover:text-secondary transition-colors"
-                >
+                <a className="hover:text-secondary transition-colors">
                   Privacy Policy
                 </a>
               </li>
               <li>
-                <a
-                  href="/contact"
-                  className="hover:text-secondary transition-colors"
-                >
+                <a className="hover:text-secondary transition-colors">
                   Contact Us
                 </a>
               </li>

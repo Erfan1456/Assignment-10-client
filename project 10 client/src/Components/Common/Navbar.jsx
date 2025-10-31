@@ -38,7 +38,7 @@ const Navbar = () => {
         {/* Logo */}
         <NavLink to="/" className="flex items-center gap-2">
           <img
-            src="https://branition.com/assets/img/users/logos/14133-XtJwRvn.webp"
+            src="/assets/logo.webp"
             alt="logo"
             className="w-12 h-12 rounded-full"
           />
