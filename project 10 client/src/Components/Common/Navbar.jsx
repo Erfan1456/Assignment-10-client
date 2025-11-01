@@ -28,7 +28,7 @@ const Navbar = () => {
     { name: "Home", path: "/" },
     { name: "Explore Gardeners", path: "/explore-gardeners" },
     { name: "Browse Tips", path: "/browse-tips" },
-    { name: "Share a Garden Tip", path: "/share-tip" },
+    { name: "Share a Garden Tip", path: "/shareTips" },
     { name: "My Tips", path: "/my-tips" },
   ];
 

@@ -4,6 +4,7 @@ import ErrorPage from "../Pages/ErrorPage";
 import Home from "../Pages/Home";
 import Signup from "../Pages/Signup";
 import Register from "../Pages/Register";
+import ShareTips from "../Pages/ShareTips";
 
 export const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ export const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register />,
+      },
+      {
+        path: "/shareTips",
+        element: <ShareTips />,
       },
     ],
   },
