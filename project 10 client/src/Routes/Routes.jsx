@@ -5,6 +5,8 @@ import Home from "../Pages/Home";
 import Signup from "../Pages/Signup";
 import Register from "../Pages/Register";
 import ShareTips from "../Pages/ShareTips";
+import BrowseTips from "../Pages/BrowseTips";
+import TipsDetails from "../Pages/TipsDetails";
 
 export const router = createBrowserRouter([
   {
@@ -29,6 +31,14 @@ export const router = createBrowserRouter([
       {
         path: "/shareTips",
         element: <ShareTips />,
+      },
+      {
+        path: "/browseTips",
+        element: <BrowseTips />,
+      },
+      {
+        path: "/tipsDetails/:id",
+        element: <TipsDetails />,
       },
     ],
   },

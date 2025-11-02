@@ -6,6 +6,8 @@ const ShareTips = () => {
   const { user } = useContext(AuthContext);
 
   const [formData, setFormData] = useState({
+    name: user.displayName,
+    email: user.email,
     title: "",
     plantType: "",
     difficulty: "",
@@ -13,6 +15,7 @@ const ShareTips = () => {
     imageUrl: "",
     category: "",
     availability: "",
+    like: 0,
   });
 
   const handleChange = (e) => {
@@ -24,16 +27,30 @@ const ShareTips = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    toast.success("🌱 Garden Tip Shared Successfully!");
-    setFormData({
-      title: "",
-      plantType: "",
-      difficulty: "",
-      description: "",
-      imageUrl: "",
-      category: "",
-      availability: "",
-    });
+
+    // send tips data to db
+    fetch("http://localhost:5001/tips", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+
+    //toast.success("🌱 Garden Tip Shared Successfully!");
+    // setFormData({
+    //   name: user.displayName,
+    //   email: user.email,
+    //   title: "",
+    //   plantType: "",
+    //   difficulty: "",
+    //   description: "",
+    //   imageUrl: "",
+    //   category: "",
+    //   availability: "", like: 0,
+    // });
   };
 
   return (
@@ -190,7 +207,7 @@ const ShareTips = () => {
             >
               <option value="">Select Availability</option>
               <option value="Public">Public</option>
-              <option value="Hidden">Hidden</option>
+              <option value="Hidden">Private</option>
             </select>
           </div>
 
