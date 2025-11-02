@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { NavLink } from "react-router";
 import { AuthContext } from "../../provider/AuthProvider";
+import ThemeToggle from "../../Utilities/ThemeToggle";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -98,10 +99,13 @@ const Navbar = () => {
               SignUp
             </NavLink>
           )}
+          <ThemeToggle />
         </div>
 
         {/* Mobile menu button */}
-        <div className="lg:hidden">
+
+        <div className="lg:hidden flex items-center justify-center gap-6">
+          <ThemeToggle />
           <button onClick={toggleMenu} className="btn btn-ghost btn-square">
             <svg
               xmlns="http://www.w3.org/2000/svg"
