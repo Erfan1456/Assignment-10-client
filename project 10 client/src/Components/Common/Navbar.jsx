@@ -26,7 +26,7 @@ const Navbar = () => {
 
   const links = [
     { name: "Home", path: "/" },
-    { name: "Explore Gardeners", path: "/explore-gardeners" },
+    { name: "Explore Gardeners", path: "/gardeners" },
     { name: "Browse Tips", path: "/browseTips" },
     { name: "Share a Garden Tip", path: "/shareTips" },
     { name: "My Tips", path: "/my-tips" },
