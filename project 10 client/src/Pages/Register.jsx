@@ -2,6 +2,7 @@ import React, { use, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../provider/AuthProvider";
 import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 
 const Register = () => {
   const { user, createUserWithGoogle } = use(AuthContext);
@@ -31,13 +32,17 @@ const Register = () => {
   const validatePassword = (password) => {
     const hasUpper = /[A-Z]/.test(password);
     const hasLower = /[a-z]/.test(password);
-    const isLength = password.length >= 6;
+    const isLength = password.length >= 8;
+    const hasSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(password); // check for special character
 
     if (!hasUpper)
       return "Password must contain at least one uppercase letter.";
     if (!hasLower)
       return "Password must contain at least one lowercase letter.";
-    if (!isLength) return "Password must be at least 6 characters long.";
+    if (!isLength) return "Password must be at least 8 characters long.";
+    if (!hasSpecial)
+      return "Password must contain at least one special character.";
+
     return null;
   };
 
@@ -71,7 +76,12 @@ const Register = () => {
               displayName: formData.name,
               photoURL: formData.photoURL,
             });
-            toast.success("Welcome to GrowTogether! 🌿");
+            Swal.fire({
+              icon: "success",
+              title: "Welcome  to GrowTogether!",
+              showConfirmButton: false,
+              timer: 1500,
+            });
             setSuccess("Registration Successful!");
             setFormData({
               name: "",
@@ -98,7 +108,13 @@ const Register = () => {
     createUserWithGoogle()
       .then((userCredential) => {
         const user = userCredential.user;
-        toast.success("Welcome to GrowTogether! 🌿");
+        Swal.fire({
+          icon: "success",
+          title: "Welcome to GrowTogether!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+
         setUser(user);
       })
       .catch((error) => {

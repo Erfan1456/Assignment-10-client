@@ -1,5 +1,12 @@
 import React from "react";
-import { FaFacebookF, FaTwitter, FaInstagram, FaGithub } from "react-icons/fa";
+import {
+  FaFacebookF,
+  FaTwitter,
+  FaInstagram,
+  FaGithub,
+  FaPhoneAlt,
+  FaEnvelope,
+} from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -15,10 +22,20 @@ const Footer = () => {
             />
             <h1 className="text-xl font-bold text-primary">GrowTogether</h1>
           </div>
-          <p className="text-base-content/70">
+          <p className="text-base-content/70 mb-4">
             A community for gardening enthusiasts to share tips, find local
             gardeners, and grow together. 🌱
           </p>
+
+          {/* Contact Info */}
+          <div className="space-y-1 text-base-content/80 text-sm">
+            <p className="flex items-center gap-2">
+              <FaPhoneAlt className="text-primary" /> +880 1234-567890
+            </p>
+            <p className="flex items-center gap-2">
+              <FaEnvelope className="text-primary" /> support@growtogether.com
+            </p>
+          </div>
         </div>
 
         {/* Quick Links */}

@@ -3,6 +3,7 @@ import { NavLink } from "react-router";
 import { AuthContext } from "../../provider/AuthProvider";
 import ThemeToggle from "../../Utilities/ThemeToggle";
 import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,7 +14,14 @@ const Navbar = () => {
 
   const onLogout = () => {
     logout()
-      .then(() => toast.success("Logged out successfully!"))
+      .then(() =>
+        Swal.fire({
+          icon: "success",
+          title: "Logged out successfully!",
+          showConfirmButton: false,
+          timer: 1500,
+        })
+      )
       .catch(() => toast.error("Logout failed!"));
   };
 

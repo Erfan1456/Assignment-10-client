@@ -8,6 +8,26 @@ import { Navigation, Pagination, Autoplay, EffectFade } from "swiper/modules";
 
 const slides = [
   {
+    id: 4,
+    title: "Plant Care Tips for Beginners",
+    subtitle: "Grow healthy plants effortlessly",
+    description:
+      "Essential tips on watering, sunlight, soil types, and fertilization. Perfect for anyone starting their gardening journey.",
+    image:
+      "https://images.ctfassets.net/i3tkg7dt3kro/kcUqtWUlsa9S7TwV9J9z5/ec199a3e4c3212e4fecd8d839ff48e86/top-plant-care-tips-15-1.jpg",
+    buttonText: "Read Tips",
+  },
+  {
+    id: 3,
+    title: "Composting Workshop",
+    subtitle: "Turn waste into garden gold",
+    description:
+      "Discover eco-friendly methods to compost kitchen and garden waste. Reduce your footprint and improve soil health naturally.",
+    image:
+      "https://cdn.stayhappening.com/events7/banners/ea532e395116dec4d0d8aeceebc0bbe105c23057080d68405f3244c648aece6e-rimg-w1200-h796-dc322c19-gmir.jpg?v=1761672459",
+    buttonText: "Register Now",
+  },
+  {
     id: 1,
     title: "Community Garden Meetup",
     subtitle: "Monthly gathering of local gardeners",
@@ -26,26 +46,6 @@ const slides = [
     image:
       "https://tse3.mm.bing.net/th/id/OIP.noAfteKooXnVOc8oViGKdAHaDt?rs=1&pid=ImgDetMain&o=7&rm=3",
     buttonText: "Learn More",
-  },
-  {
-    id: 3,
-    title: "Composting Workshop",
-    subtitle: "Turn waste into garden gold",
-    description:
-      "Discover eco-friendly methods to compost kitchen and garden waste. Reduce your footprint and improve soil health naturally.",
-    image:
-      "https://cdn.stayhappening.com/events7/banners/ea532e395116dec4d0d8aeceebc0bbe105c23057080d68405f3244c648aece6e-rimg-w1200-h796-dc322c19-gmir.jpg?v=1761672459",
-    buttonText: "Register Now",
-  },
-  {
-    id: 4,
-    title: "Plant Care Tips for Beginners",
-    subtitle: "Grow healthy plants effortlessly",
-    description:
-      "Essential tips on watering, sunlight, soil types, and fertilization. Perfect for anyone starting their gardening journey.",
-    image:
-      "https://images.ctfassets.net/i3tkg7dt3kro/kcUqtWUlsa9S7TwV9J9z5/ec199a3e4c3212e4fecd8d839ff48e86/top-plant-care-tips-15-1.jpg",
-    buttonText: "Read Tips",
   },
 ];
 

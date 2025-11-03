@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../provider/AuthProvider";
 import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 
 const Signup = () => {
   useEffect(() => {
@@ -47,7 +48,13 @@ const Signup = () => {
     signIn(formData.email, formData.password)
       .then((userCredential) => {
         const user = userCredential.user;
-        toast.success("Welcome back to GrowTogether!");
+        Swal.fire({
+          icon: "success",
+          title: "Welcome back to GrowTogether!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+
         setUser(user);
       })
       .catch(() => {
@@ -65,7 +72,12 @@ const Signup = () => {
     createUserWithGoogle()
       .then((userCredential) => {
         setUser(userCredential.user);
-        toast.success("Successfully Logged In with Google!");
+        Swal.fire({
+          icon: "success",
+          title: "Welcome back to GrowTogether!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       })
       .catch(() => toast.error("Google Login Failed"));
   };
