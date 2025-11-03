@@ -30,8 +30,29 @@ const TipsDetails = () => {
   }
 
   const handleLike = () => {
+    if (!tip) return;
+
+    // Optimistically update the UI
     setLikes((prev) => prev + 1);
-    // optionally send like to backend
+
+    // Send PATCH request to backend
+    fetch(`http://localhost:5001/tips/${tip._id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ likes: likes + 1 }), // send updated like count
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        // Optionally update tip state with new likes from server
+        setTip((prev) => ({ ...prev, likes: data.likes }));
+      })
+      .catch((err) => {
+        console.error("Failed to update likes:", err);
+        // Revert UI if failed
+        setLikes((prev) => prev - 1);
+      });
   };
 
   const formattedDate = new Date(tip.createdAt).toLocaleDateString("en-US", {

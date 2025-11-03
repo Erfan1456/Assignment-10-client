@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { NavLink } from "react-router";
 import { AuthContext } from "../../provider/AuthProvider";
 import ThemeToggle from "../../Utilities/ThemeToggle";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,13 +30,13 @@ const Navbar = () => {
     { name: "Home", path: "/" },
     { name: "Explore Gardeners", path: "/gardeners" },
     { name: "Browse Tips", path: "/browseTips" },
-    { name: "Share a Garden Tip", path: "/shareTips" },
-    { name: "My Tips", path: "/myTips" },
+    { name: "Share a Garden Tip", path: "/shareTips", private: true }, // private
+    { name: "My Tips", path: "/myTips", private: true }, // private
   ];
 
   return (
     <nav className="bg-base-100 shadow-md py-2 border-b border-black">
-      <div className=" mx-auto w-9/10 flex items-center justify-between h-16">
+      <div className="mx-auto w-9/10 flex items-center justify-between h-16">
         {/* Logo */}
         <NavLink to="/" className="flex items-center gap-2">
           <img
@@ -46,42 +47,47 @@ const Navbar = () => {
           <span className="font-bold text-xl text-primary">GrowTogether</span>
         </NavLink>
 
-        {/* Links */}
+        {/* Desktop Links */}
         <div className="hidden lg:flex space-x-6 items-center">
-          {links.map((link) => (
-            <NavLink
-              key={link.name}
-              to={link.path}
-              className={({ isActive }) =>
-                `hover:text-secondary transition-colors ${
-                  isActive
-                    ? "text-primary font-semibold border-b-2 border-primary"
-                    : "text-base-content"
-                }`
-              }
-            >
-              {link.name}
-            </NavLink>
-          ))}
+          {links.map((link) => {
+            if (link.private && !user) return null; // hide private links
+            return (
+              <NavLink
+                key={link.name}
+                to={link.path}
+                className={({ isActive }) =>
+                  `hover:text-secondary transition-colors ${
+                    isActive
+                      ? "text-primary font-semibold border-b-2 border-primary"
+                      : "text-base-content"
+                  }`
+                }
+              >
+                {link.name}
+              </NavLink>
+            );
+          })}
         </div>
 
-        {/* Menu for desktop */}
+        {/* Desktop Right Side */}
         <div className="hidden lg:flex space-x-6 items-center">
-          {/* Login / User */}
           {user ? (
             <div className="relative group">
               <img
-                src="https://t4.ftcdn.net/jpg/04/31/64/75/360_F_431647519_usrbQ8Z983hTYe8zgA7t1XVc5fEtqcpa.jpg"
-                alt="profile image"
+                src={
+                  user.photoURL ||
+                  "https://t4.ftcdn.net/jpg/04/31/64/75/360_F_431647519_usrbQ8Z983hTYe8zgA7t1XVc5fEtqcpa.jpg"
+                }
+                alt="profile"
                 className="w-12 h-12 rounded-full cursor-pointer"
                 onClick={() => setShowLogoutBtn(!showLogoutBtn)}
               />
               <div className="absolute right-13 top-1 bg-base-200 rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity z-12">
-                <div className="w-full text-left px-4 py-2  rounded whitespace-nowrap">
-                  Erfan Khan
+                <div className="w-full text-left px-4 py-2 rounded whitespace-nowrap">
+                  {user.displayName}
                 </div>
               </div>
-              {showLogoutBtn ? (
+              {showLogoutBtn && (
                 <div className="absolute right-0 mt-2 w-32 bg-base-200 rounded shadow-lg z-14">
                   <button
                     onClick={onLogout}
@@ -90,8 +96,6 @@ const Navbar = () => {
                     Logout
                   </button>
                 </div>
-              ) : (
-                ""
               )}
             </div>
           ) : (
@@ -103,7 +107,6 @@ const Navbar = () => {
         </div>
 
         {/* Mobile menu button */}
-
         <div className="lg:hidden flex items-center justify-center gap-6">
           <ThemeToggle />
           <button onClick={toggleMenu} className="btn btn-ghost btn-square">
@@ -125,7 +128,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile Links */}
       {isOpen && (
         <div className="lg:hidden px-6 pb-4 space-y-2 bg-base-100">
           {links.map(

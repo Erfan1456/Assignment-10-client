@@ -1,4 +1,3 @@
-import React from "react";
 import { FaLeaf } from "react-icons/fa";
 
 const Loader = ({ message = "Loading, please wait..." }) => {
