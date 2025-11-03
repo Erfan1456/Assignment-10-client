@@ -8,7 +8,6 @@ const HomeRoot = () => {
   return (
     <div>
       <Navbar />
-      <ThemeToggle />
       <Outlet />
       <Footer />
     </div>

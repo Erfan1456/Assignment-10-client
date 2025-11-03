@@ -8,6 +8,8 @@ import ShareTips from "../Pages/ShareTips";
 import BrowseTips from "../Pages/BrowseTips";
 import TipsDetails from "../Pages/TipsDetails";
 import Gardeners from "../Pages/Gardeners";
+import MyTips from "../Pages/MyTips";
+import UpdateTips from "../Pages/UpdateTips";
 
 export const router = createBrowserRouter([
   {
@@ -44,6 +46,14 @@ export const router = createBrowserRouter([
       {
         path: "/gardeners",
         element: <Gardeners />,
+      },
+      {
+        path: "/myTips",
+        element: <MyTips />,
+      },
+      {
+        path: "/updateTip/:id",
+        element: <UpdateTips />,
       },
     ],
   },
