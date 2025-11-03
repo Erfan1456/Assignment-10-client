@@ -2,27 +2,31 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { AuthContext } from "../provider/AuthProvider";
 import Loader from "../Utilities/Loader";
+import TipsUpdateModal from "../Components/myTips/TipsUpdateModal";
 
 const MyTips = () => {
   const [tips, setTips] = useState([]);
+  const [selectedTip, setSelectedTip] = useState(null); // 👈 store tip for modal
   const navigate = useNavigate();
-
   const { user, loading } = useContext(AuthContext);
 
-  // Example user email (replace with actual logged-in user's email if you have auth)
-  const userEmail = "erfan@example.com";
-
-  // Fetch user's own tips
   useEffect(() => {
+    if (!user) return; // wait for user to be loaded
+
     document.title = "growTogether - My Tips";
 
     fetch(`http://localhost:5001/tips`)
       .then((res) => res.json())
-      .then((data) => setTips(data))
+      .then((data) =>
+        setTips(
+          data.filter(
+            (tip) => user.displayName === tip.name && user.email === tip.email
+          )
+        )
+      )
       .catch((err) => console.error("Error fetching tips:", err));
-  }, [userEmail]);
+  }, [user]);
 
-  // Handle delete
   const handleDelete = (id) => {
     if (!window.confirm("Are you sure you want to delete this tip?")) return;
 
@@ -39,9 +43,10 @@ const MyTips = () => {
       .catch((err) => console.error("Delete failed:", err));
   };
 
-  // Navigate to update page
-  const handleUpdate = (id) => {
-    navigate(`/updateTip/${id}`);
+  const handleUpdate = (tip) => {
+    setSelectedTip(tip); // 👈 store selected tip in state
+    const modal = document.getElementById("my_modal_1");
+    if (modal) modal.showModal(); // 👈 open modal
   };
 
   if (loading) {
@@ -74,59 +79,55 @@ const MyTips = () => {
                 </tr>
               </thead>
               <tbody>
-                {tips.map((tip, index) => {
-                  if (
-                    user.displayName === tip.name &&
-                    user.email === tip.email
-                  ) {
-                    return (
-                      <tr
-                        key={tip._id}
-                        className="hover:bg-green-50 dark:hover:bg-base-300 transition"
+                {tips.map((tip, index) => (
+                  <tr
+                    key={tip._id}
+                    className="hover:bg-green-50 dark:hover:bg-base-300 transition"
+                  >
+                    <td>{index + 1}</td>
+                    <td className="font-semibold text-green-700">
+                      {tip.title}
+                    </td>
+                    <td>{tip.category}</td>
+                    <td>{tip.plantType}</td>
+                    <td>
+                      <span
+                        className={`px-2 py-1 text-xs rounded-full font-medium ${
+                          tip.availability === "Public"
+                            ? "bg-green-200 text-green-800"
+                            : "bg-red-200 text-pink-800"
+                        }`}
                       >
-                        <td>{index + 1}</td>
-                        <td className="font-semibold text-green-700">
-                          {tip.title}
-                        </td>
-                        <td>{tip.category}</td>
-                        <td>{tip.plantType}</td>
-                        <td>
-                          <span
-                            className={`px-2 py-1 text-xs rounded-full font-medium ${
-                              tip.availability === "Public"
-                                ? "bg-green-200 text-green-800"
-                                : "bg-yellow-200 text-yellow-800"
-                            }`}
-                          >
-                            {tip.availability}
-                          </span>
-                        </td>
-                        <td>
-                          {new Date(tip.createdAt).toLocaleDateString("en-US")}
-                        </td>
-                        <td className="flex gap-2">
-                          <button
-                            onClick={() => handleUpdate(tip._id)}
-                            className="btn btn-sm bg-green-500 hover:bg-green-600 text-white"
-                          >
-                            Update
-                          </button>
-                          <button
-                            onClick={() => handleDelete(tip._id)}
-                            className="btn btn-sm bg-red-500 hover:bg-red-600 text-white"
-                          >
-                            Delete
-                          </button>
-                        </td>
-                      </tr>
-                    );
-                  }
-                })}
+                        {tip.availability}
+                      </span>
+                    </td>
+                    <td>
+                      {new Date(tip.createdAt).toLocaleDateString("en-US")}
+                    </td>
+                    <td className="flex gap-2">
+                      <button
+                        onClick={() => handleUpdate(tip)} // 👈 send tip
+                        className="btn btn-sm bg-green-500 hover:bg-green-600 text-white"
+                      >
+                        Update
+                      </button>
+                      <button
+                        onClick={() => handleDelete(tip._id)}
+                        className="btn btn-sm bg-red-500 hover:bg-red-600 text-white"
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
         )}
       </div>
+
+      {/* Pass selected tip to modal */}
+      <TipsUpdateModal tip={selectedTip} setTips={setTips} />
     </div>
   );
 };

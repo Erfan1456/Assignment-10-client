@@ -54,45 +54,43 @@ const BrowseTips = () => {
               </tr>
             </thead>
             <tbody>
-              {tips.map((tip, index) => {
-                if (tip.availability === "Public") {
-                  return (
-                    <tr key={tip._id} className="hover:bg-green-50">
-                      <td>{index + 1}</td>
-                      <td>
-                        <img
-                          src={tip.imageUrl}
-                          alt={tip.title}
-                          className="w-16 h-16 object-cover rounded-lg border"
-                        />
-                      </td>
-                      <td className="font-medium">{tip.title}</td>
-                      <td>{tip.category}</td>
-                      <td>
-                        <span
-                          className={`badge ${
-                            tip.difficulty === "Easy"
-                              ? "badge-success"
-                              : tip.difficulty === "Medium"
-                              ? "badge-warning"
-                              : "badge-error"
-                          }`}
-                        >
-                          {tip.difficulty}
-                        </span>
-                      </td>
-                      <td>
-                        <button
-                          onClick={() => navigate(`/tipsDetails/${tip._id}`)}
-                          className="btn btn-sm bg-green-600 hover:bg-green-700 text-white flex items-center gap-2"
-                        >
-                          <FaEye /> See More
-                        </button>
-                      </td>
-                    </tr>
-                  );
-                }
-              })}
+              {tips
+                .filter((tip) => tip.availability === "Public")
+                .map((tip, index) => (
+                  <tr key={tip._id} className="hover:bg-green-50">
+                    <td>{index + 1}</td>
+                    <td>
+                      <img
+                        src={tip.imageUrl}
+                        alt={tip.title}
+                        className="w-16 h-16 object-cover rounded-lg border"
+                      />
+                    </td>
+                    <td className="font-medium">{tip.title}</td>
+                    <td>{tip.category}</td>
+                    <td>
+                      <span
+                        className={`badge ${
+                          tip.difficulty === "Easy"
+                            ? "badge-success"
+                            : tip.difficulty === "Medium"
+                            ? "badge-warning"
+                            : "badge-error"
+                        }`}
+                      >
+                        {tip.difficulty}
+                      </span>
+                    </td>
+                    <td>
+                      <button
+                        onClick={() => navigate(`/tipsDetails/${tip._id}`)}
+                        className="btn btn-sm bg-green-600 hover:bg-green-700 text-white flex items-center gap-2"
+                      >
+                        <FaEye /> See More
+                      </button>
+                    </td>
+                  </tr>
+                ))}
             </tbody>
           </table>
         )}

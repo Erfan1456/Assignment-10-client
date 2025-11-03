@@ -207,7 +207,7 @@ const ShareTips = () => {
             >
               <option value="">Select Availability</option>
               <option value="Public">Public</option>
-              <option value="Hidden">Private</option>
+              <option value="Private">Private</option>
             </select>
           </div>
 
