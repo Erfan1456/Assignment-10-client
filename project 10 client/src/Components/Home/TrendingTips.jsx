@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { FaUser } from "react-icons/fa";
+import { FaUser, FaHeart } from "react-icons/fa";
 import { Link } from "react-router";
 
 const TrendingTips = () => {
@@ -59,7 +59,7 @@ const TrendingTips = () => {
             )}
 
             {/* Tip Info */}
-            <div className="p-6 flex-1 flex flex-col justify-between">
+            <div className="py-4 px-6 flex-1 flex flex-col justify-between">
               <div>
                 <h2 className="text-xl font-bold text-green-700 mb-2">
                   {tip.title}
@@ -69,17 +69,26 @@ const TrendingTips = () => {
                 </p>
               </div>
 
-              <div className="flex items-center justify-between text-sm text-gray-600 mt-2">
-                <span className="flex items-center gap-2 font-medium text-green-700">
-                  <FaUser /> {tip.name}
-                </span>
+              {/* Footer Info */}
+              <div>
+                <div className="flex items-center justify-between text-sm text-gray-600 mt-2">
+                  <span className="flex items-center gap-2 font-medium text-green-700">
+                    <FaUser /> {tip.name}
+                  </span>
 
-                <Link
-                  to={`/tipsDetails/${tip._id}`}
-                  className="text-green-600 hover:underline font-semibold"
-                >
-                  Read More →
-                </Link>
+                  {/* Likes */}
+                  <span className="flex items-center gap-1 text-red-500 font-semibold">
+                    <FaHeart /> {tip.likes || 0}
+                  </span>
+                </div>
+                <div className="mt-4">
+                  <Link
+                    to={`/tipsDetails/${tip._id}`}
+                    className="text-green-600 hover:underline font-semibold"
+                  >
+                    Read More →
+                  </Link>
+                </div>
               </div>
             </div>
           </div>

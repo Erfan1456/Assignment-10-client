@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { FaUserCircle } from "react-icons/fa";
 
 const TipsUpdateModal = ({ tip, onUpdate, setTips }) => {
   const [formData, setFormData] = useState({
@@ -46,13 +47,11 @@ const TipsUpdateModal = ({ tip, onUpdate, setTips }) => {
     })
       .then((res) => res.json())
       .then((updatedTip) => {
-        toast.success("🌱 Tip updated successfully!");
+        toast.success("🌿 Tip updated successfully!");
 
-        // Close modal
         const modal = document.getElementById("my_modal_1");
         if (modal) modal.close();
 
-        // Update the tips state in parent
         if (setTips) {
           setTips((prevTips) =>
             prevTips.map((t) => (t._id === updatedTip._id ? updatedTip : t))
@@ -65,7 +64,7 @@ const TipsUpdateModal = ({ tip, onUpdate, setTips }) => {
       });
   };
 
-  if (!tip) return null; // no tip selected yet
+  if (!tip) return null;
 
   return (
     <dialog id="my_modal_1" className="modal">
@@ -73,7 +72,22 @@ const TipsUpdateModal = ({ tip, onUpdate, setTips }) => {
         onSubmit={handleSubmit}
         className="modal-box max-w-lg bg-white dark:bg-base-200 space-y-4"
       >
-        <h3 className="text-xl font-bold text-green-700">Update Tip</h3>
+        <h3 className="text-xl font-bold text-green-700 border-b pb-2">
+          Update Gardening Tip
+        </h3>
+
+        {/* Author Info Card */}
+        <div className="flex items-center gap-3 p-3 rounded-lg bg-green-50 border border-green-100">
+          <FaUserCircle className="text-4xl text-green-600" />
+          <div>
+            <h4 className="font-semibold text-green-800">
+              {tip.name || "Unknown Author"}
+            </h4>
+            <p className="text-sm text-gray-500">
+              {tip.email || "No email provided"}
+            </p>
+          </div>
+        </div>
 
         {/* Title */}
         <div>

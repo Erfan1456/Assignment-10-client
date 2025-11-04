@@ -46,7 +46,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/tipsDetails/:id",
-        element: <TipsDetails />,
+        element: (
+          <PrivateRoutes>
+            <TipsDetails />
+          </PrivateRoutes>
+        ),
       },
       {
         path: "/gardeners",

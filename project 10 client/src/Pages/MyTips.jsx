@@ -3,6 +3,7 @@ import { useNavigate } from "react-router";
 import { AuthContext } from "../provider/AuthProvider";
 import Loader from "../Utilities/Loader";
 import TipsUpdateModal from "../Components/myTips/TipsUpdateModal";
+import Swal from "sweetalert2";
 
 const MyTips = () => {
   const [tips, setTips] = useState([]);
@@ -28,19 +29,57 @@ const MyTips = () => {
   }, [user]);
 
   const handleDelete = (id) => {
-    if (!window.confirm("Are you sure you want to delete this tip?")) return;
-
-    fetch(`http://localhost:5001/tips/${id}`, {
-      method: "DELETE",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.deletedCount > 0) {
-          alert("Tip deleted successfully!");
-          setTips((prev) => prev.filter((tip) => tip._id !== id));
-        }
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: "btn btn-success mx-2",
+        cancelButton: "btn btn-danger mx-2",
+      },
+      buttonsStyling: false,
+    });
+    swalWithBootstrapButtons
+      .fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, cancel!",
+        reverseButtons: true,
       })
-      .catch((err) => console.error("Delete failed:", err));
+      .then((result) => {
+        if (result.isConfirmed) {
+          fetch(`http://localhost:5001/tips/${id}`, {
+            method: "DELETE",
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.deletedCount > 0) {
+                swalWithBootstrapButtons.fire({
+                  title: "Deleted!",
+                  text: "Your file has been deleted.",
+                  icon: "success",
+                });
+                setTips((prev) => prev.filter((tip) => tip._id !== id));
+              }
+            })
+            .catch((err) => {
+              swalWithBootstrapButtons.fire({
+                title: "Cancelled",
+                text: `${err}`,
+                icon: "error",
+              });
+            });
+        } else if (
+          /* Read more about handling dismissals below */
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          swalWithBootstrapButtons.fire({
+            title: "Cancelled",
+            text: "Your imaginary file is safe :)",
+            icon: "error",
+          });
+        }
+      });
   };
 
   const handleUpdate = (tip) => {
