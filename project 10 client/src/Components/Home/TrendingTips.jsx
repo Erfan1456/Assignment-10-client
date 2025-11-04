@@ -78,7 +78,7 @@ const TrendingTips = () => {
 
                   {/* Likes */}
                   <span className="flex items-center gap-1 text-red-500 font-semibold">
-                    <FaHeart /> {tip.likes || 0}
+                    <FaHeart /> {tip.likes.length || 0}
                   </span>
                 </div>
                 <div className="mt-4">

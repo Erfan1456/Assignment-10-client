@@ -15,7 +15,7 @@ const ShareTips = () => {
     imageUrl: "",
     category: "",
     availability: "",
-    like: 0,
+    likes: [],
   });
 
   const handleChange = (e) => {
@@ -39,18 +39,19 @@ const ShareTips = () => {
       .then((res) => res.json())
       .then((data) => console.log(data));
 
-    //toast.success("🌱 Garden Tip Shared Successfully!");
-    // setFormData({
-    //   name: user.displayName,
-    //   email: user.email,
-    //   title: "",
-    //   plantType: "",
-    //   difficulty: "",
-    //   description: "",
-    //   imageUrl: "",
-    //   category: "",
-    //   availability: "", like: 0,
-    // });
+    toast.success("🌱 Garden Tip Shared Successfully!");
+    setFormData({
+      name: user.displayName,
+      email: user.email,
+      title: "",
+      plantType: "",
+      difficulty: "",
+      description: "",
+      imageUrl: "",
+      category: "",
+      availability: "",
+      likes: [],
+    });
   };
 
   return (

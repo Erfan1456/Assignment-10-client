@@ -5,18 +5,26 @@ import { FaThumbsUp, FaCalendarAlt, FaUser } from "react-icons/fa";
 const TipsDetails = () => {
   const { id } = useParams(); // Get tip ID from URL
   const [tip, setTip] = useState(null);
-  const [likes, setLikes] = useState(0);
+  const [likes, setLikes] = useState([]);
+  const [checkLike, setCheckLike] = useState(false);
 
+  // Simulated logged-in user (replace with your auth context)
+  const currentUser = {
+    name: "Erfan Khan",
+    email: "erfan@gmail.com",
+  };
+
+  // Fetch tip details
   useEffect(() => {
-    document.title = "growTogether - Tip Details";
-
-    // Fetch tip by ID from backend
     fetch(`http://localhost:5001/tips/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setTip(data);
-        console.log(data);
-        setLikes(data.likes || 0); // optional likes field
+        setLikes(data.likes || []);
+        const userLiked = data.likes?.some(
+          (like) => like.email === currentUser.email
+        );
+        setCheckLike(userLiked);
       })
       .catch((err) => console.error(err));
   }, [id]);
@@ -29,30 +37,46 @@ const TipsDetails = () => {
     );
   }
 
-  const handleLike = () => {
+  const handleLike = async () => {
     if (!tip) return;
 
-    // Optimistically update the UI
-    setLikes((prev) => prev + 1);
+    let updatedLikes;
 
-    // Send PATCH request to backend
-    fetch(`http://localhost:5001/tips/${tip._id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ likes: likes + 1 }), // send updated like count
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        // Optionally update tip state with new likes from server
-        setTip((prev) => ({ ...prev, likes: data.likes }));
-      })
-      .catch((err) => {
-        console.error("Failed to update likes:", err);
-        // Revert UI if failed
-        setLikes((prev) => prev - 1);
+    if (checkLike) {
+      // User already liked — remove them
+      updatedLikes = likes.filter((like) => like.email !== currentUser.email);
+    } else {
+      // User not liked — add them
+      updatedLikes = [
+        ...likes,
+        { name: currentUser.name, email: currentUser.email },
+      ];
+    }
+
+    // Optimistically update UI
+    setLikes(updatedLikes);
+    setCheckLike(!checkLike);
+
+    // Send PUT request to update backend
+    try {
+      const res = await fetch(`http://localhost:5001/tips/${tip._id}`, {
+        method: "PUT", // <-- Changed from PATCH to PUT
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ likes: updatedLikes }),
       });
+
+      if (!res.ok) throw new Error("Failed to update likes");
+
+      const updatedTip = await res.json();
+      setTip(updatedTip);
+    } catch (err) {
+      console.error("Error updating likes:", err);
+      // revert UI on failure
+      setLikes(likes);
+      setCheckLike(checkLike);
+    }
   };
 
   const formattedDate = new Date(tip.createdAt).toLocaleDateString("en-US", {
@@ -114,9 +138,13 @@ const TipsDetails = () => {
         {/* Like Button */}
         <button
           onClick={handleLike}
-          className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white py-3 px-5 rounded-xl font-semibold shadow-md transition transform hover:scale-105"
+          className={`flex items-center gap-2 ${
+            checkLike
+              ? "bg-red-600 hover:bg-red-700"
+              : "bg-green-600 hover:bg-green-700"
+          } text-white py-3 px-5 rounded-xl font-semibold shadow-md transition transform hover:scale-105`}
         >
-          <FaThumbsUp /> Like ({likes})
+          <FaThumbsUp /> {checkLike ? "Unlike" : "Like"}
         </button>
       </div>
     </div>
