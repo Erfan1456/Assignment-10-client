@@ -2,6 +2,8 @@ import React from "react";
 import Banner from "../Components/Home/Banner";
 import Gardeners from "../Components/Home/Gardeners";
 import TrendingTips from "../Components/Home/TrendingTips";
+import PlantCareCalendar from "../Components/Home/PlantCareCalendar";
+import EcoChallenges from "../Components/Home/EcoChallenges";
 
 const Home = () => {
   return (
@@ -14,6 +16,12 @@ const Home = () => {
       </section>
       <section>
         <TrendingTips />
+      </section>
+      <section>
+        <PlantCareCalendar />
+      </section>
+      <section>
+        <EcoChallenges />
       </section>
     </div>
   );
