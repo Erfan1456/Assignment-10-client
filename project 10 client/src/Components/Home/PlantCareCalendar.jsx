@@ -54,9 +54,9 @@ const PlantCareCalendar = () => {
   ];
 
   return (
-    <section className="py-16 bg-green-50" id="plant-calendar">
+    <section className="py-16 " id="plant-calendar">
       <div className="max-w-6xl mx-auto text-center px-6">
-        <h2 className="text-4xl font-bold text-green-800 mb-6">
+        <h2 className="text-4xl font-bold text-green-700 mb-6">
           <Typewriter
             words={["🌱 Plant Care Calendar", "Grow with Every Season"]}
             loop={true}
@@ -67,7 +67,7 @@ const PlantCareCalendar = () => {
             delaySpeed={2000}
           />
         </h2>
-        <p className="text-gray-600 max-w-2xl mx-auto mb-10">
+        <p className="text-base-content max-w-2xl mx-auto mb-10">
           Learn what to plant and how to care for them during each season. Hover
           over a plant name to reveal its care tips 🌼
         </p>

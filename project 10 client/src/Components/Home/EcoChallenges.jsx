@@ -36,7 +36,7 @@ const EcoChallenges = () => {
   ];
 
   return (
-    <section className="bg-green-50 py-16 px-6">
+    <section className=" py-16 px-6 mb-12">
       <div className="max-w-6xl mx-auto text-center">
         {/* Animated Title */}
         <h2 className="text-4xl font-bold text-green-700 mb-4">
@@ -50,7 +50,7 @@ const EcoChallenges = () => {
             delaySpeed={1500}
           />
         </h2>
-        <p className="text-gray-700 max-w-2xl mx-auto mb-10">
+        <p className="text-base-content max-w-2xl mx-auto mb-10">
           Take part in small weekly challenges that make a big impact. Track
           your progress and inspire others to live more sustainably!
         </p>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { FaEye } from "react-icons/fa";
+import Loader from "./../Utilities/Loader";
 
 const BrowseTips = () => {
   const [tips, setTips] = useState([]);
@@ -25,11 +26,7 @@ const BrowseTips = () => {
   }, []);
 
   if (loading) {
-    return (
-      <div className="flex justify-center items-center min-h-screen">
-        <span className="loading loading-spinner text-success"></span>
-      </div>
-    );
+    return <Loader />;
   }
 
   // 🔍 Filter logic
@@ -41,9 +38,9 @@ const BrowseTips = () => {
         );
 
   return (
-    <div className="min-h-screen bg-green-50 py-10 px-4">
-      <div className="max-w-6xl mx-auto bg-white rounded-3xl shadow-xl shadow-green-100 p-6 overflow-x-auto">
-        <h1 className="text-3xl font-bold text-green-700 mb-6 text-center">
+    <div className="min-h-screen bg-base-100 py-10 px-4">
+      <div className="max-w-6xl mx-auto dark:bg-base-200 rounded-3xl shadow-xl shadow-base-100 md:p-6 px-2 py-6 overflow-x-auto">
+        <h1 className="md:text-3xl text-2xl font-bold text-green-700 mb-6 text-center">
           🌱 Browse Garden Tips
         </h1>
 
@@ -65,20 +62,20 @@ const BrowseTips = () => {
           <p className="text-center text-gray-600">No tips found.</p>
         ) : (
           <table className="table w-full border border-gray-200">
-            <thead className="bg-green-100 text-green-800">
+            <thead className="bg-green-100 dark:bg-green-900 text-white">
               <tr>
-                <th>#</th>
+                <th className="hidden md:table-cell">#</th>
                 <th>Image</th>
                 <th>Title</th>
-                <th>Category</th>
-                <th>Difficulty</th>
+                <th className="hidden md:table-cell">Category</th>
+                <th className="hidden md:table-cell">Difficulty</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
               {filteredTips.map((tip, index) => (
-                <tr key={tip._id} className="hover:bg-green-50">
-                  <td>{index + 1}</td>
+                <tr key={tip._id} className="hover:bg-base-300">
+                  <td className="hidden md:block">{index + 1}</td>
                   <td>
                     <img
                       src={tip.imageUrl}
@@ -87,10 +84,10 @@ const BrowseTips = () => {
                     />
                   </td>
                   <td className="font-medium">{tip.title}</td>
-                  <td>{tip.category}</td>
-                  <td>
+                  <td className="hidden md:table-cell">{tip.category}</td>
+                  <td className="md:table-cell hidden">
                     <span
-                      className={`badge ${
+                      className={`hidden md:block badge ${
                         tip.difficulty === "Easy"
                           ? "badge-success"
                           : tip.difficulty === "Medium"
@@ -106,7 +103,8 @@ const BrowseTips = () => {
                       onClick={() => navigate(`/tipsDetails/${tip._id}`)}
                       className="btn btn-sm bg-green-600 hover:bg-green-700 text-white flex items-center gap-2"
                     >
-                      <FaEye /> See More
+                      <FaEye />{" "}
+                      <span className="hidden md:block">See More</span>
                     </button>
                   </td>
                 </tr>

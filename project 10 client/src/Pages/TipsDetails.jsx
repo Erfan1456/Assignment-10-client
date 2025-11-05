@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { FaThumbsUp, FaCalendarAlt, FaUser } from "react-icons/fa";
+import { AuthContext } from "../provider/AuthProvider";
 
 const TipsDetails = () => {
   const { id } = useParams(); // Get tip ID from URL
@@ -8,22 +9,18 @@ const TipsDetails = () => {
   const [likes, setLikes] = useState([]);
   const [checkLike, setCheckLike] = useState(false);
 
-  // Simulated logged-in user (replace with your auth context)
-  const currentUser = {
-    name: "Erfan Khan",
-    email: "erfan@gmail.com",
-  };
+  const { user } = useContext(AuthContext);
 
   // Fetch tip details
   useEffect(() => {
+    document.title = "GrowTogether | Tips Details";
+
     fetch(`http://localhost:5001/tips/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setTip(data);
         setLikes(data.likes || []);
-        const userLiked = data.likes?.some(
-          (like) => like.email === currentUser.email
-        );
+        const userLiked = data.likes?.some((like) => like.email === user.email);
         setCheckLike(userLiked);
       })
       .catch((err) => console.error(err));
@@ -44,13 +41,10 @@ const TipsDetails = () => {
 
     if (checkLike) {
       // User already liked — remove them
-      updatedLikes = likes.filter((like) => like.email !== currentUser.email);
+      updatedLikes = likes.filter((like) => like.email !== user.email);
     } else {
       // User not liked — add them
-      updatedLikes = [
-        ...likes,
-        { name: currentUser.name, email: currentUser.email },
-      ];
+      updatedLikes = [...likes, { name: user.name, email: user.email }];
     }
 
     // Optimistically update UI
@@ -86,10 +80,10 @@ const TipsDetails = () => {
   });
 
   return (
-    <div className="min-h-screen bg-green-50 flex justify-center items-start py-12 px-4">
-      <div className="max-w-4xl w-full bg-white bg-opacity-90 backdrop-blur-md rounded-3xl shadow-2xl shadow-green-200 p-8 space-y-6">
+    <div className="min-h-screen text-base-content flex justify-center items-start py-12 px-4">
+      <div className="max-w-4xl w-full bg-info bg-opacity-90 backdrop-blur-md rounded-3xl shadow-2xl shadow-base-200 p-8 space-y-6">
         {/* Title */}
-        <h1 className="text-4xl font-bold text-green-800 drop-shadow-md">
+        <h1 className="md:text-4xl text-xl font-bold text-green-700 drop-shadow-md">
           {tip.title}
         </h1>
 
@@ -103,7 +97,7 @@ const TipsDetails = () => {
         </div>
 
         {/* Info Section */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-gray-700 text-lg">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-base-content text-lg">
           <p>
             <span className="font-semibold">Plant Type:</span> {tip.plantType}
           </p>
@@ -132,7 +126,7 @@ const TipsDetails = () => {
           <h2 className="text-2xl font-semibold text-green-700 mb-2">
             Description
           </h2>
-          <p className="text-gray-700 text-lg">{tip.description}</p>
+          <p className="text-lg">{tip.description}</p>
         </div>
 
         {/* Like Button */}

@@ -7,7 +7,7 @@ const TrendingTips = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    document.title = "growTogether - Trending Tips";
+    document.title = "growTogether | Home";
 
     fetch("http://localhost:5001/trendingTips") // Fetch trending tips
       .then((res) => res.json())
@@ -38,8 +38,8 @@ const TrendingTips = () => {
   }
 
   return (
-    <div className="min-h-screen bg-green-50 py-12 px-6">
-      <h1 className="text-3xl font-bold text-green-800 text-center mb-8">
+    <div className="min-h-screen  py-12 px-6">
+      <h1 className="text-3xl font-bold text-green-700 text-center mb-8">
         🌿 Trending Gardening Tips
       </h1>
 
@@ -47,7 +47,7 @@ const TrendingTips = () => {
         {tips.map((tip) => (
           <div
             key={tip._id}
-            className="bg-white shadow-lg rounded-2xl overflow-hidden border border-green-100 hover:shadow-xl transition-transform hover:scale-105 flex flex-col md:flex-row-reverse"
+            className="bg-info shadow-lg rounded-2xl overflow-hidden border border-green-100 hover:shadow-xl transition-transform hover:scale-105 flex flex-col md:flex-row-reverse"
           >
             {/* Tip Image */}
             {tip.imageUrl && (
@@ -64,7 +64,7 @@ const TrendingTips = () => {
                 <h2 className="text-xl font-bold text-green-700 mb-2">
                   {tip.title}
                 </h2>
-                <p className="text-gray-700 mb-4 line-clamp-3">
+                <p className="text-base-content mb-4 line-clamp-3">
                   {tip.description}
                 </p>
               </div>

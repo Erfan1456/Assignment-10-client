@@ -7,7 +7,7 @@ import EcoChallenges from "../Components/Home/EcoChallenges";
 
 const Home = () => {
   return (
-    <div>
+    <div className="flex flex-col gap-8">
       <section>
         <Banner />
       </section>

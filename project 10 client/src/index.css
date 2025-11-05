@@ -14,6 +14,9 @@
   --color-base-300: oklch(92% 0.04 120);
   --color-base-content: oklch(20% 0.05 120); /* main text color */
 
+  /* personal */
+  --color-info: rgb(255, 255, 255);
+
   /* Theme colors */
   --color-primary: #4caf50; /* main green */
   --color-primary-content: #ffffff; /* text on primary */
@@ -23,7 +26,7 @@
   --color-accent-content: #2e3a27;
   --color-neutral: #2e3a27; /* soil brown / muted */
   --color-neutral-content: #f9fff6;
-  --color-info: #a5d6a7; /* mint info */
+
   --color-info-content: #2e3a27;
   --color-success: #66bb6a; /* success green */
   --color-success-content: #ffffff;
@@ -58,6 +61,9 @@
   --color-base-300: #1e1e1e;
   --color-base-content: #f1f8e9;
 
+  /* personal */
+  --color-info: #1e1e1e;
+
   --color-primary: #66bb6a;
   --color-primary-content: #ffffff;
   --color-secondary: #a5d6a7;
@@ -66,7 +72,6 @@
   --color-accent-content: #1e1e1e;
   --color-neutral: #1e1e1e;
   --color-neutral-content: #f1f8e9;
-  --color-info: #b2ff59;
   --color-info-content: #1e1e1e;
   --color-success: #81c784;
   --color-success-content: #ffffff;

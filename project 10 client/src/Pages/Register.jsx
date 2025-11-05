@@ -9,7 +9,7 @@ const Register = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    document.title = "GrowTogether - Register";
+    document.title = "GrowTogether | Register";
   }, []);
 
   useEffect(() => {
@@ -125,8 +125,8 @@ const Register = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-b from-green-50 to-white p-4">
-      <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md border border-gray-400">
+    <div className="flex items-center justify-center min-h-screen  p-4">
+      <div className="bg-info p-8 rounded-2xl shadow-lg w-full max-w-md border border-gray-400">
         <div className="text-center mb-6">
           <img
             src="https://cdn-icons-png.flaticon.com/512/7663/7663830.png"
@@ -136,7 +136,7 @@ const Register = () => {
           <h2 className="text-3xl font-bold text-green-700">
             Join GrowTogether
           </h2>
-          <p className="text-gray-500 text-sm mt-1">
+          <p className="text-base-content text-sm mt-1">
             Start your journey with our gardening community 🌱
           </p>
         </div>
@@ -144,7 +144,7 @@ const Register = () => {
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* Name */}
           <div>
-            <label className="block text-sm font-medium text-green-800">
+            <label className="block text-sm font-medium text-green-700">
               Full Name
             </label>
             <input
@@ -159,7 +159,7 @@ const Register = () => {
 
           {/* Email */}
           <div>
-            <label className="block text-sm font-medium text-green-800">
+            <label className="block text-sm font-medium text-green-700">
               Email
             </label>
             <input
@@ -174,7 +174,7 @@ const Register = () => {
 
           {/* PhotoURL */}
           <div>
-            <label className="block text-sm font-medium text-green-800">
+            <label className="block text-sm font-medium text-green-700">
               Profile Photo URL
             </label>
             <input
@@ -188,7 +188,7 @@ const Register = () => {
 
           {/* Password */}
           <div>
-            <label className="block text-sm font-medium text-green-800">
+            <label className="block text-sm font-medium text-green-700">
               Password
             </label>
             <input
@@ -218,7 +218,7 @@ const Register = () => {
         {/* Google Login */}
         <button
           onClick={handleGoogleLogin}
-          className="w-full mt-4 flex items-center justify-center gap-2 border-2 border-gray-400 py-2 rounded-lg hover:bg-green-50 transition"
+          className="w-full mt-4 flex items-center justify-center gap-2 border-2 border-gray-400 py-2 rounded-lg hover:bg-base-100 transition"
         >
           <img
             src="https://www.svgrepo.com/show/475656/google-color.svg"
@@ -229,7 +229,7 @@ const Register = () => {
         </button>
 
         {/* Redirect */}
-        <p className="mt-4 text-center text-sm text-gray-600">
+        <p className="mt-4 text-center text-sm text-base-content">
           Already have an account?{" "}
           <Link
             to="/signup"

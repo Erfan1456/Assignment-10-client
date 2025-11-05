@@ -35,8 +35,8 @@ const Gardeners = () => {
   }
 
   return (
-    <div className="min-h-screen bg-green-50 py-12 px-6">
-      <h1 className="text-3xl font-bold text-green-800 text-center mb-10">
+    <div className="min-h-screen py-12 px-6">
+      <h1 className="text-3xl font-bold text-green-700 text-center mb-10">
         🌿 Active Gardeners
       </h1>
 
@@ -44,7 +44,7 @@ const Gardeners = () => {
         {gardeners.map((gardener) => (
           <div
             key={gardener._id}
-            className="bg-white border border-green-100 rounded-3xl shadow-lg p-6 hover:shadow-2xl transition-shadow duration-300"
+            className="bg-info border border-green-100 rounded-3xl shadow-lg p-6 hover:shadow-2xl transition-shadow duration-300"
           >
             {/* Gardener Image */}
             <img
@@ -58,13 +58,13 @@ const Gardeners = () => {
               <h2 className="text-xl font-bold text-green-700 flex items-center justify-center gap-1">
                 <FaLeaf className="text-green-600" /> {gardener.name}
               </h2>
-              <p className="text-gray-600 text-sm">
+              <p className="text-base-content text-sm">
                 {gardener.gender}, {gardener.age} years old
               </p>
               <p className="text-green-700 flex items-center justify-center gap-1 text-sm">
                 <FaMapMarkerAlt /> {gardener.location}
               </p>
-              <p className="text-gray-500 text-sm">
+              <p className="text-base-content text-sm">
                 Total Shared Tips:{" "}
                 <span className="font-semibold text-green-700">
                   {gardener.totalSharedTips}

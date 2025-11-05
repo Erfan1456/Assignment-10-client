@@ -1,9 +1,13 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import toast from "react-hot-toast";
 
 const ShareTips = () => {
   const { user } = useContext(AuthContext);
+
+  useEffect(() => {
+    document.title = "GrowTogether | Share Tips";
+  }, []);
 
   const [formData, setFormData] = useState({
     name: user.displayName,

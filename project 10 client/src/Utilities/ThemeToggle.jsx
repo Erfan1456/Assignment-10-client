@@ -18,7 +18,7 @@ const ThemeToggle = () => {
   };
 
   return (
-    <label className="relative inline-flex items-center cursor-pointer w-14 h-8">
+    <label className="relative inline-flex items-center cursor-pointer lg:w-14 w-12 lg:h-8 h-6">
       <input
         type="checkbox"
         className="sr-only peer"
@@ -30,7 +30,7 @@ const ThemeToggle = () => {
 
       {/* Sliding circle with icons */}
       <div
-        className={`absolute top-0.5 left-0.5 w-7 h-7 bg-white rounded-full shadow-md flex items-center justify-center text-yellow-400 transition-transform duration-300 
+        className={`absolute top-0.5 left-0.5 lg:w-7 w-5 lg:h-7 h-5 bg-white rounded-full shadow-md flex items-center justify-center text-yellow-400 transition-transform duration-300 
         ${
           theme === "darkTheme"
             ? "translate-x-6 text-gray-800"

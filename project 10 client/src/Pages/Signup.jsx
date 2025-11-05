@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 
 const Signup = () => {
   useEffect(() => {
-    document.title = "GrowTogether - Login";
+    document.title = "GrowTogether | Login";
   }, []);
 
   const {
@@ -100,20 +100,18 @@ const Signup = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-b from-green-50 to-white p-6">
-      <div className="bg-white/90 backdrop-blur-lg shadow-lg p-8 rounded-3xl w-full max-w-md border border-gray-400">
-        <h2 className="text-3xl font-bold text-center mb-6 text-emerald-600">
+    <div className="flex items-center justify-center min-h-screen p-6">
+      <div className="bg-info backdrop-blur-lg shadow-lg p-8 rounded-3xl w-full max-w-md border border-gray-400">
+        <h2 className="text-3xl font-bold text-center mb-6 text-emerald-700">
           Welcome Back 🌱
         </h2>
-        <p className="text-center text-gray-600 mb-6">
+        <p className="text-center text-base-content mb-6">
           Log in to continue growing with your community.
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
-            <label className="block text-sm font-semibold text-gray-700">
-              Email
-            </label>
+            <label className="block text-sm font-semibold ">Email</label>
             <input
               type="email"
               name="email"
@@ -125,9 +123,7 @@ const Signup = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-semibold text-gray-700">
-              Password
-            </label>
+            <label className="block text-sm font-semibold ">Password</label>
             <input
               type="password"
               name="password"
@@ -153,7 +149,7 @@ const Signup = () => {
 
         <button
           onClick={handleGoogleLogin}
-          className="w-full flex items-center justify-center gap-3 border-2 border-gray-400 py-2 rounded-lg hover:bg-emerald-50 transition font-medium"
+          className="w-full flex items-center justify-center gap-3 border-2 border-gray-400 py-2 rounded-lg hover:bg-base-100 transition font-medium"
         >
           <img
             src="https://www.svgrepo.com/show/475656/google-color.svg"
@@ -163,8 +159,8 @@ const Signup = () => {
           Continue with Google
         </button>
 
-        <div className="flex flex-col sm:flex-row sm:justify-between items-center gap-2 mt-6 text-sm">
-          <p>
+        <div className="flex flex-col sm:flex-row text-base-content sm:justify-between items-center gap-2 mt-6 text-sm">
+          <p className="text-base-content">
             Don’t have an account?{" "}
             <Link to="/register" className="text-emerald-600 hover:underline">
               Register
@@ -201,7 +197,7 @@ const Signup = () => {
                 onChange={(e) => setEmailForgetPassword(e.target.value)}
                 required
                 placeholder="your@email.com"
-                className="w-full mt-1 px-3 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-300 focus:outline-none"
+                className="w-full mt-1 px-3 py-2 border text-black rounded-lg focus:ring-2 focus:ring-emerald-300 focus:outline-none"
               />
             </div>
 

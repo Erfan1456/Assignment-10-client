@@ -8,24 +8,28 @@ import Swal from "sweetalert2";
 const MyTips = () => {
   const [tips, setTips] = useState([]);
   const [selectedTip, setSelectedTip] = useState(null); // 👈 store tip for modal
-  const navigate = useNavigate();
+  const [loading2, setLoading2] = useState(true);
   const { user, loading } = useContext(AuthContext);
 
   useEffect(() => {
     if (!user) return; // wait for user to be loaded
 
-    document.title = "growTogether - My Tips";
+    document.title = "growTogether | My Tips";
 
     fetch(`http://localhost:5001/tips`)
       .then((res) => res.json())
-      .then((data) =>
+      .then((data) => {
         setTips(
           data.filter(
             (tip) => user.displayName === tip.name && user.email === tip.email
           )
-        )
-      )
-      .catch((err) => console.error("Error fetching tips:", err));
+        );
+        setLoading2(false); // ✅ set loading false after data is set
+      })
+      .catch((err) => {
+        console.error("Error fetching tips:", err);
+        setLoading2(false); // ✅ also set loading false on error
+      });
   }, [user]);
 
   const handleDelete = (id) => {
@@ -88,13 +92,13 @@ const MyTips = () => {
     if (modal) modal.showModal(); // 👈 open modal
   };
 
-  if (loading) {
+  if (loading || loading2) {
     return <Loader />;
   }
 
   return (
     <div className="min-h-screen bg-base-100 py-10 px-4">
-      <div className="max-w-6xl mx-auto bg-white dark:bg-base-200 rounded-2xl shadow-xl p-6">
+      <div className="max-w-6xl mx-auto bg-white dark:bg-base-200 rounded-2xl shadow-xl md:p-6 px-2 py-6">
         <h1 className="text-3xl font-bold text-green-700 mb-6 text-center">
           My Shared Tips
         </h1>
@@ -108,13 +112,13 @@ const MyTips = () => {
             <table className="table w-full border border-gray-200 rounded-lg">
               <thead className="bg-green-100 dark:bg-green-900">
                 <tr className="text-gray-700 dark:text-gray-100">
-                  <th>#</th>
-                  <th>Title</th>
-                  <th>Category</th>
-                  <th>Plant Type</th>
-                  <th>Visibility</th>
-                  <th>Created At</th>
-                  <th>Actions</th>
+                  <th className="hidden md:table-cell">#</th>
+                  <th className="table-cell">Title</th>
+                  <th className="hidden md:table-cell">Category</th>
+                  <th className="hidden md:table-cell">Plant Type</th>
+                  <th className="table-cell">Visibility</th>
+                  <th className="hidden md:table-cell">Created At</th>
+                  <th className="table-cell">Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -123,12 +127,21 @@ const MyTips = () => {
                     key={tip._id}
                     className="hover:bg-green-50 dark:hover:bg-base-300 transition"
                   >
-                    <td>{index + 1}</td>
+                    {/* Index */}
+                    <td className="hidden md:table-cell">{index + 1}</td>
+
+                    {/* Title */}
                     <td className="font-semibold text-green-700">
                       {tip.title}
                     </td>
-                    <td>{tip.category}</td>
-                    <td>{tip.plantType}</td>
+
+                    {/* Category */}
+                    <td className="hidden md:table-cell">{tip.category}</td>
+
+                    {/* Plant Type */}
+                    <td className="hidden md:table-cell">{tip.plantType}</td>
+
+                    {/* Availability */}
                     <td>
                       <span
                         className={`px-2 py-1 text-xs rounded-full font-medium ${
@@ -140,12 +153,16 @@ const MyTips = () => {
                         {tip.availability}
                       </span>
                     </td>
-                    <td>
+
+                    {/* Created At */}
+                    <td className="hidden md:table-cell">
                       {new Date(tip.createdAt).toLocaleDateString("en-US")}
                     </td>
-                    <td className="flex gap-2">
+
+                    {/* Actions */}
+                    <td className="flex flex-col md:flex-row gap-2">
                       <button
-                        onClick={() => handleUpdate(tip)} // 👈 send tip
+                        onClick={() => handleUpdate(tip)}
                         className="btn btn-sm bg-green-500 hover:bg-green-600 text-white"
                       >
                         Update

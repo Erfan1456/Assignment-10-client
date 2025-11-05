@@ -115,7 +115,7 @@ const Navbar = () => {
         </div>
 
         {/* Mobile menu button */}
-        <div className="lg:hidden flex items-center justify-center gap-6">
+        <div className="lg:hidden flex items-center justify-center lg:gap-6 gap-2">
           <ThemeToggle />
           <button onClick={toggleMenu} className="btn btn-ghost btn-square">
             <svg
