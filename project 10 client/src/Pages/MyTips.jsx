@@ -4,6 +4,7 @@ import { AuthContext } from "../provider/AuthProvider";
 import Loader from "../Utilities/Loader";
 import TipsUpdateModal from "../Components/myTips/TipsUpdateModal";
 import Swal from "sweetalert2";
+import BASE_URL from "./../Utilities/backendURL";
 
 const MyTips = () => {
   const [tips, setTips] = useState([]);
@@ -14,9 +15,9 @@ const MyTips = () => {
   useEffect(() => {
     if (!user) return; // wait for user to be loaded
 
-    document.title = "growTogether | My Tips";
+    document.title = "GrowTogether | My Tips";
 
-    fetch(`http://localhost:5001/tips`)
+    fetch(`${BASE_URL}/tips`)
       .then((res) => res.json())
       .then((data) => {
         setTips(
@@ -52,7 +53,7 @@ const MyTips = () => {
       })
       .then((result) => {
         if (result.isConfirmed) {
-          fetch(`http://localhost:5001/tips/${id}`, {
+          fetch(`${BASE_URL}/tips/${id}`, {
             method: "DELETE",
           })
             .then((res) => res.json())

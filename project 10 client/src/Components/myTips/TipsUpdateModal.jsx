@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { FaUserCircle } from "react-icons/fa";
+import BASE_URL from "../../Utilities/backendURL";
 
 const TipsUpdateModal = ({ tip, onUpdate, setTips }) => {
   const [formData, setFormData] = useState({
@@ -38,7 +39,7 @@ const TipsUpdateModal = ({ tip, onUpdate, setTips }) => {
     e.preventDefault();
     if (!tip) return;
 
-    fetch(`http://localhost:5001/tips/${tip._id}`, {
+    fetch(`${BASE_URL}/tips/${tip._id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

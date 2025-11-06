@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Zero Waste Week",
+    "description": "Avoid plastic packaging and try to make no trash for a whole week!",
+    "icon": "♻️",
+    "tooltip": "Reduce, reuse, recycle — and refuse what you don’t need!"
+  },
+  {
+    "title": "Plant a Tree Day",
+    "description": "Join your friends and plant a tree in your community or backyard.",
+    "icon": "🌳",
+    "tooltip": "One tree can provide oxygen for two people for a year!"
+  },
+  {
+    "title": "No Car Sunday",
+    "description": "Walk, bike, or use public transport to reduce your carbon footprint.",
+    "icon": "🚴‍♂️",
+    "tooltip": "Every liter of gas saved means 2.3 kg less CO₂ emitted."
+  },
+  {
+    "title": "Save Water Challenge",
+    "description": "Take shorter showers and fix leaky taps this week.",
+    "icon": "💧",
+    "tooltip": "Water is life — every drop counts!"
+  }
+]

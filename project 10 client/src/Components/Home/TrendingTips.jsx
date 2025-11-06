@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
 import { FaUser, FaHeart } from "react-icons/fa";
 import { Link } from "react-router";
+import BASE_URL from "../../Utilities/backendURL";
 
 const TrendingTips = () => {
   const [tips, setTips] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    document.title = "growTogether | Home";
-
-    fetch("http://localhost:5001/trendingTips") // Fetch trending tips
+    fetch(`${BASE_URL}/trendingTips`) // Fetch trending tips
       .then((res) => res.json())
       .then((data) => {
         setTips(data);
@@ -38,7 +37,7 @@ const TrendingTips = () => {
   }
 
   return (
-    <div className="min-h-screen  py-12 px-6">
+    <div className="py-12 px-6">
       <h1 className="text-3xl font-bold text-green-700 text-center mb-8">
         🌿 Trending Gardening Tips
       </h1>

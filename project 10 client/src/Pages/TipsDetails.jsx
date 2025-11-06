@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { FaThumbsUp, FaCalendarAlt, FaUser } from "react-icons/fa";
 import { AuthContext } from "../provider/AuthProvider";
+import BASE_URL from "../Utilities/backendURL";
 
 const TipsDetails = () => {
   const { id } = useParams(); // Get tip ID from URL
@@ -15,7 +16,7 @@ const TipsDetails = () => {
   useEffect(() => {
     document.title = "GrowTogether | Tips Details";
 
-    fetch(`http://localhost:5001/tips/${id}`)
+    fetch(`${BASE_URL}/tips/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setTip(data);
@@ -53,7 +54,7 @@ const TipsDetails = () => {
 
     // Send PUT request to update backend
     try {
-      const res = await fetch(`http://localhost:5001/tips/${tip._id}`, {
+      const res = await fetch(`${BASE_URL}/tips/${tip._id}`, {
         method: "PUT", // <-- Changed from PATCH to PUT
         headers: {
           "Content-Type": "application/json",

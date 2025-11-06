@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { FaEye } from "react-icons/fa";
 import Loader from "./../Utilities/Loader";
+import BASE_URL from "../Utilities/backendURL";
 
 const BrowseTips = () => {
   const [tips, setTips] = useState([]);
@@ -13,7 +14,7 @@ const BrowseTips = () => {
     document.title = "GrowTogether | Browse Tips";
 
     // Fetch only public tips from backend
-    fetch("http://localhost:5001/tips")
+    fetch(`${BASE_URL}/tips`)
       .then((res) => res.json())
       .then((data) => {
         setTips(data);

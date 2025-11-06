@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import toast from "react-hot-toast";
+import BASE_URL from "../Utilities/backendURL";
 
 const ShareTips = () => {
   const { user } = useContext(AuthContext);
@@ -33,7 +34,7 @@ const ShareTips = () => {
     e.preventDefault();
 
     // send tips data to db
-    fetch("http://localhost:5001/tips", {
+    fetch(`${BASE_URL}/tips`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { FaLeaf, FaMapMarkerAlt } from "react-icons/fa";
+import BASE_URL from "../../Utilities/backendURL";
 
 const Gardeners = () => {
   const [gardeners, setGardeners] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:5001/activeUsers")
+    fetch(`${BASE_URL}/activeUsers`)
       .then((res) => res.json())
       .then((data) => {
         setGardeners(data);
@@ -35,7 +36,7 @@ const Gardeners = () => {
   }
 
   return (
-    <div className="min-h-screen py-12 px-6">
+    <div className=" py-12 px-6">
       <h1 className="text-3xl font-bold text-green-700 text-center mb-10">
         🌿 Active Gardeners
       </h1>

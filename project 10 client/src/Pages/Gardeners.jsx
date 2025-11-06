@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Loader from "./../Utilities/Loader";
+import BASE_URL from "./../Utilities/backendURL";
 
 const Gardeners = () => {
   const [gardeners, setGardeners] = useState([]);
   const [loading, setLoading] = useState(true); // added loading state
 
   useEffect(() => {
-    document.title = "growTogether | Gardeners";
+    document.title = "GrowTogether | Gardeners";
 
-    fetch("http://localhost:5001/users") // replace with your API
+    fetch(`${BASE_URL}/users`) // replace with your API
       .then((res) => res.json())
       .then((data) => {
         setGardeners(data);

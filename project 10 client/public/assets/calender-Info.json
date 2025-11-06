@@ -1,0 +1,42 @@
+[
+  {
+    "id": "spring",
+    "title": "🌸 Spring",
+    "animation": "/assets/lottie/spring.json",
+    "plants": [
+      { "name": "Lettuce", "tip": "Plant in cool weather and partial sun." },
+      { "name": "Spinach", "tip": "Keep soil moist but not soggy." }
+    ],
+    "bg": "bg-green-100"
+  },
+  {
+    "id": "summer",
+    "title": "☀️ Summer",
+    "animation": "/assets/lottie/summer.json",
+    "plants": [
+      { "name": "Tomatoes", "tip": "Needs 6+ hours of sunlight daily." },
+      { "name": "Basil", "tip": "Water every morning, avoid soggy roots." }
+    ],
+    "bg": "bg-yellow-100"
+  },
+  {
+    "id": "autumn",
+    "title": "🍂 Autumn",
+    "animation": "/assets/lottie/autumn.json",
+    "plants": [
+      { "name": "Carrots", "tip": "Loosen soil before planting seeds." },
+      { "name": "Broccoli", "tip": "Prefers cooler weather for best taste." }
+    ],
+    "bg": "bg-orange-100"
+  },
+  {
+    "id": "winter",
+    "title": "❄️ Winter",
+    "animation": "/assets/lottie/winter.json",
+    "plants": [
+      { "name": "Garlic", "tip": "Plant before the ground freezes." },
+      { "name": "Kale", "tip": "Survives frost and gets sweeter." }
+    ],
+    "bg": "bg-blue-100"
+  }
+]

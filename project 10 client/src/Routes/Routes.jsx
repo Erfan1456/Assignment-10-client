@@ -11,6 +11,7 @@ import Gardeners from "../Pages/Gardeners";
 import MyTips from "../Pages/MyTips";
 import UpdateTips from "../Pages/UpdateTips";
 import PrivateRoutes from "./PrivateRoutes";
+import Loader from "../Utilities/Loader";
 
 export const router = createBrowserRouter([
   {
@@ -21,9 +22,38 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
-        // loader: () => fetch("/app-info.json"),
-        // hydrateFallbackElement: <Loader />,
+        loader: async () => {
+          try {
+            // Fetch all three JSON files in parallel
+            const [bannerRes, calendarRes, ecoRes] = await Promise.all([
+              fetch("/assets/banner-info.json"),
+              fetch("/assets/calender-Info.json"),
+              fetch("/assets/eco-info.json"),
+            ]);
+
+            // Check if all responses are okay
+            if (!bannerRes.ok || !calendarRes.ok || !ecoRes.ok) {
+              throw new Error("One or more JSON files failed to load");
+            }
+
+            // Convert all responses to JSON
+            const [bannerInfo, calenderInfo, ecoInfo] = await Promise.all([
+              bannerRes.json(),
+              calendarRes.json(),
+              ecoRes.json(),
+            ]);
+
+            // Return all data to your Home component
+            return { bannerInfo, calenderInfo, ecoInfo };
+          } catch (error) {
+            console.error("Error loading JSON data:", error);
+            // Return fallback empty data to avoid breaking the app
+            return { bannerInfo: [], calenderInfo: [], ecoInfo: [] };
+          }
+        },
+        hydrateFallbackElement: <Loader />,
       },
+
       {
         path: "/signup",
         element: <Signup />,
