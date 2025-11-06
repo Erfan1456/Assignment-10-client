@@ -9,7 +9,6 @@ import BrowseTips from "../Pages/BrowseTips";
 import TipsDetails from "../Pages/TipsDetails";
 import Gardeners from "../Pages/Gardeners";
 import MyTips from "../Pages/MyTips";
-import UpdateTips from "../Pages/UpdateTips";
 import PrivateRoutes from "./PrivateRoutes";
 import Loader from "../Utilities/Loader";
 
@@ -93,10 +92,6 @@ export const router = createBrowserRouter([
             <MyTips />
           </PrivateRoutes>
         ),
-      },
-      {
-        path: "/updateTip/:id",
-        element: <UpdateTips />,
       },
     ],
   },
