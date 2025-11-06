@@ -10,7 +10,7 @@ With **dynamic animations**, **smooth UI transitions**, and **React-based intera
 
 ## 🔗 Live Site URL
 
-[https://your-live-site-url.netlify.app](https://your-live-site-url.netlify.app) <!-- Replace with your actual deployed link -->
+[https://project-10-web-development.web.app](https://project-10-web-development.web.app) <!-- Replace with your actual deployed link -->
 
 ---
 
